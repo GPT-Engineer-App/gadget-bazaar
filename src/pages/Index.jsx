@@ -1,19 +1,56 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { Container, Text, VStack, Box, SimpleGrid, Image } from "@chakra-ui/react";
+import Navbar from "../components/Navbar";
 
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+const sampleProducts = [
+  {
+    id: 1,
+    name: "Smartphone",
+    image: "https://via.placeholder.com/150",
+    price: "$299",
+  },
+  {
+    id: 2,
+    name: "Laptop",
+    image: "https://via.placeholder.com/150",
+    price: "$799",
+  },
+  {
+    id: 3,
+    name: "Headphones",
+    image: "https://via.placeholder.com/150",
+    price: "$199",
+  },
+];
 
 const Index = () => {
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
-      </VStack>
-    </Container>
+    <>
+      <Navbar />
+      <Container maxW="container.md" py={4}>
+        <VStack spacing={4}>
+          <Text fontSize="2xl" fontWeight="bold">
+            Welcome to E-Shop
+          </Text>
+          <Text>Discover the latest in electronic gadgets and accessories.</Text>
+        </VStack>
+        <Box mt={8}>
+          <Text fontSize="xl" mb={4}>
+            Featured Products
+          </Text>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+            {sampleProducts.map((product) => (
+              <VStack key={product.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
+                <Image src={product.image} alt={product.name} boxSize="150px" />
+                <Text fontSize="xl" fontWeight="bold">
+                  {product.name}
+                </Text>
+                <Text>{product.price}</Text>
+              </VStack>
+            ))}
+          </SimpleGrid>
+        </Box>
+      </Container>
+    </>
   );
 };
 
